@@ -8,11 +8,15 @@ class Punto
 {
 private:
     double mx;		
-	double my;		
+	double my;
+    std::vector Punto* lista;
+    
 
 public:
 // Constructores
    Punto(double =0.0, double =0.0);
+//Destructor
+    ~Punto();
 //metodos
     void setPunto(double x, double y);
     void set_punto(Punto pa);
