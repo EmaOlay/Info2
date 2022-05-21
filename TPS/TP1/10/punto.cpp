@@ -17,15 +17,15 @@ Punto::Punto(double x, double y)
 {
     creados++;
     existentes++;
-    if (x < -1000)
+    if (x < Punto::limite_inf)
     {
-        mx = -1000;
+        mx = Punto::limite_inf;
     }
     else
     {
-        if (x > 1000)
+        if (x > Punto::limite_sup)
         {
-            mx = 1000;
+            mx = Punto::limite_sup;
         }
         else
         {
@@ -33,15 +33,15 @@ Punto::Punto(double x, double y)
         }
     }
 
-    if (y < -1000)
+    if (y < Punto::limite_inf)
     {
-        my = -1000;
+        my = Punto::limite_inf;
     }
     else
     {
-        if (y > 1000)
+        if (y > Punto::limite_sup)
         {
-            my = 1000;
+            my = Punto::limite_sup;
         }
         else
         {
@@ -50,17 +50,63 @@ Punto::Punto(double x, double y)
     }
 }
 
-void Punto::setPunto(double x, double y)
-{
-    if (x < -1000)
+void Punto::setLimites (float inf,float sup){
+    if (inf>sup)
     {
-        mx = -1000;
+        cout<<"Limites invalidos"<<endl;
     }
     else
     {
-        if (x > 1000)
+        Punto::limite_inf=inf;
+        Punto::limite_sup=sup;
+    }
+    
+}
+void Punto::setPunto(Punto& pa){
+    if (pa.mx < Punto::limite_inf)
+    {
+        mx = Punto::limite_inf;
+    }
+    else
+    {
+        if (pa.mx > Punto::limite_sup)
         {
-            mx = 1000;
+            mx = Punto::limite_sup;
+        }
+        else
+        {
+            mx = pa.mx;
+        }
+    }
+
+    if (pa.my < Punto::limite_inf)
+    {
+        my = Punto::limite_inf;
+    }
+    else
+    {
+        if (pa.my > Punto::limite_sup)
+        {
+            my = Punto::limite_sup;
+        }
+        else
+        {
+            my = pa.my;
+        }
+    }
+}
+
+void Punto::setPunto(double x, double y)
+{
+    if (x < Punto::limite_inf)
+    {
+        mx = Punto::limite_inf;
+    }
+    else
+    {
+        if (x > Punto::limite_sup)
+        {
+            mx = Punto::limite_sup;
         }
         else
         {
@@ -68,15 +114,15 @@ void Punto::setPunto(double x, double y)
         }
     }
 
-    if (y < -1000)
+    if (y < Punto::limite_inf)
     {
-        my = -1000;
+        my = Punto::limite_inf;
     }
     else
     {
-        if (y > 1000)
+        if (y > Punto::limite_sup)
         {
-            my = 1000;
+            my = Punto::limite_sup;
         }
         else
         {
@@ -86,15 +132,15 @@ void Punto::setPunto(double x, double y)
 }
 
 void Punto::setX (double x){
-    if (x < -1000)
+    if (x < Punto::limite_inf)
     {
-        mx = -1000;
+        mx = Punto::limite_inf;
     }
     else
     {
-        if (x > 1000)
+        if (x > Punto::limite_sup)
         {
-            mx = 1000;
+            mx = Punto::limite_sup;
         }
         else
         {
@@ -103,15 +149,15 @@ void Punto::setX (double x){
     }
 }	
 void Punto::setY (double y){
-    if (y < -1000)
+    if (y < Punto::limite_inf)
     {
-        my = -1000;
+        my = Punto::limite_inf;
     }
     else
     {
-        if (y > 1000)
+        if (y > Punto::limite_sup)
         {
-            my = 1000;
+            my = Punto::limite_sup;
         }
         else
         {
@@ -136,27 +182,27 @@ Punto Punto::operator+ (const Punto &a){
     Punto suma;
     suma.mx = mx + a.mx;
     suma.my = my + a.my;
-    if (suma.mx < -1000)
+    if (suma.mx < Punto::limite_inf)
     {
-        suma.mx = -1000;
+        suma.mx = Punto::limite_inf;
     }
     else
     {
-        if (suma.mx > 1000)
+        if (suma.mx > Punto::limite_sup)
         {
-            suma.mx = 1000;
+            suma.mx = Punto::limite_sup;
         }
     }
 
-    if (suma.my < -1000)
+    if (suma.my < Punto::limite_inf)
     {
-        suma.my = -1000;
+        suma.my = Punto::limite_inf;
     }
     else
     {
-        if (suma.my > 1000)
+        if (suma.my > Punto::limite_sup)
         {
-            suma.my = 1000;
+            suma.my = Punto::limite_sup;
         }
     }
     return suma;
@@ -166,27 +212,27 @@ Punto Punto::operator- (const Punto &a){
     Punto suma;
     suma.mx = mx - a.mx;
     suma.my = my - a.my;
-    if (suma.mx < -1000)
+    if (suma.mx < Punto::limite_inf)
     {
-        suma.mx = -1000;
+        suma.mx = Punto::limite_inf;
     }
     else
     {
-        if (suma.mx > 1000)
+        if (suma.mx > Punto::limite_sup)
         {
-            suma.mx = 1000;
+            suma.mx = Punto::limite_sup;
         }
     }
 
-    if (suma.my < -1000)
+    if (suma.my < Punto::limite_inf)
     {
-        suma.my = -1000;
+        suma.my = Punto::limite_inf;
     }
     else
     {
-        if (suma.my > 1000)
+        if (suma.my > Punto::limite_sup)
         {
-            suma.my = 1000;
+            suma.my = Punto::limite_sup;
         }
     }
     return suma;
@@ -275,4 +321,52 @@ istream& operator>> (istream& is, Punto& a)
     return is;
 }
 
+Punto Punto::operator++ (){
+    Punto temp;
+    if ((mx+1) >= Punto::limite_sup)
+    {
+        /* no hago nada */
+    }
+    else
+    {
+        
+        temp.mx = ++mx;
+        
+    }
+    if ((my+1) >= Punto::limite_sup)
+    {
+        /* no hago nada */
+    }
+    else
+    {
+        temp.my=++my;
+    }
+    
+    return temp;
+    
+}
+
+Punto Punto::operator++ (int){
+    Punto temp;
+    if ((mx+1) >= Punto::limite_sup)
+    {
+        /* no hago nada */
+    }
+    else
+    {
+        
+        temp.mx = mx++;
+        
+    }
+    if ((my+1) >= Punto::limite_sup)
+    {
+        /* no hago nada */
+    }
+    else
+    {
+        temp.my = my++;
+    }
+
+    return temp;
+}
 
