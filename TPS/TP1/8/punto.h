@@ -9,24 +9,22 @@ class Punto
 private:
     double mx;		
 	double my;
-    static int creados;
-    static int existentes;
+    std::vector Punto* lista;
+    
+
 public:
 // Constructores
    Punto(double =0.0, double =0.0);
-   Punto(const Punto& Punto);
 //Destructor
-    ~Punto(){existentes--;};
+    ~Punto();
 //metodos
     void setPunto(double x, double y);
     void set_punto(Punto pa);
     Punto getPunto(){return *this;};
-    double getX() const {return mx;};        
-    double getY() const {return my;};     
+    double getX() const {return mx;}        
+    double getY() const {return my;}      
     void setX (double x);	
     void setY (double y);
-    static int getCantCreada(){return creados;};
-    static int getCantExistente() {return existentes;};
 //operadores
 void operator= (const Punto &a);
 Punto operator+ (const Punto &a);

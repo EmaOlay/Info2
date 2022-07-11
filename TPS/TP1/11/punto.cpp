@@ -329,9 +329,13 @@ Punto Punto::operator++ (){
     }
     else
     {
+<<<<<<< HEAD
         
         temp.mx = ++mx;
         
+=======
+        temp.mx = ++mx;
+>>>>>>> 7acc8c2cb95c923a383dc146af1a70587d4e3546
     }
     if ((my+1) >= Punto::limite_sup)
     {
@@ -383,4 +387,5 @@ void Punto::operator delete(void * p)
     {
         cout<< "Overloading delete operator " << endl;
         free(p);
+        
     }

@@ -5,18 +5,13 @@
 
 using namespace std;
 
-Punto::Punto(const Punto& Punto){
-    creados++;
-    existentes++;
-    mx=Punto.mx;
-    my=Punto.my;
+Punto::~Punto(){
+    
 }
-
 
 Punto::Punto(double x, double y)
 {
-    creados++;
-    existentes++;
+    lista.push_back(this);
     if (x < -1000)
     {
         mx = -1000;
@@ -274,5 +269,3 @@ istream& operator>> (istream& is, Punto& a)
     a.setY(y);
     return is;
 }
-
-
